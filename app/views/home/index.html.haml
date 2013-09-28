@@ -1,0 +1,36 @@
+- @photos.each do |pic|
+  - photo_url_m = FlickRaw.url_m(flickr.photos.getInfo(:photo_id => pic.id))
+  .background-image{style:"background:url('#{photo_url_m}');"}
+    #layout.pure-g-r.content
+      #nav.pure-u
+        %a.nav-menu-button{:href => "#"} Menu
+        .nav-inner
+          %button.pure-button.primary-button Add
+          .pure-menu.pure-menu-open
+            %ul
+              %li.pure-menu-heading Folders
+              %li
+                %a{:href => "#"}
+                  %span.email-label-personal>
+                  Social
+              %li
+                %a{:href => "#"}
+                  %span.email-label-work>
+                  Television
+              %li
+                %a{:href => "#"}
+                  %span.email-label-travel>
+                  Other
+              %li.pure-menu-heading Labels
+              %li
+                %a{:href => "#"}
+                  %span.email-label-personal>
+                  Personal
+              %li
+                %a{:href => "#"}
+                  %span.email-label-work>
+                  Work
+              %li
+                %a{:href => "#"}
+                  %span.email-label-travel>
+                  School
