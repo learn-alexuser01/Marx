@@ -1,0 +1,13 @@
+.container
+  .login-box  
+    %h2 Sign in
+    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
+      = f.input_field :email, :autofocus => true, :placeholder => 'Email'
+      = f.input_field :password, :inline_label => false, :placeholder => 'Password'
+      = f.button :submit, "Sign in", :class => 'btn-success', :id => 'commit'
+    .sign-in-links
+      = render "devise/shared/links"
+  .login-fb{style:"font-size: 16px; padding-top: 22px;"}
+    - if devise_mapping.omniauthable?
+      - resource_class.omniauth_providers.each do |provider|
+        = link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider)
