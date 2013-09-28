@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
+  def show
+  end
+
   def create
   end
 
