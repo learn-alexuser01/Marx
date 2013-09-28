@@ -34,6 +34,7 @@ end
 group :development do
   gem 'html2haml'
   gem 'hub', :require=>nil
+  gem 'sqlite3'
 end
 
 group :test do
