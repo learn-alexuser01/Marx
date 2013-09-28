@@ -5,12 +5,17 @@
     .pure-menu.pure-menu-open
       %a.pure-menu-heading{href: "/"} Marx
       %ul
+        - @pages.each do |page|
+          %li
+            %a{href:"#"} = page.title
         %li
           %a{href:"#"} Sample
         %li
           %a{href:"#"} Sample2
         %li.menu-item-divided
-          %a{href: "/layouts/"} Layouts
+          %a{href: "#"} Divider Sample
+    %br
+      = link_to "Log out", destroy_user_session_path, :method => :delete, :class => "pure-button pure-button-primary"
   #main.pure-u-1
     .header
       %h1 Page Title Goes Here!
