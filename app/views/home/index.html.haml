@@ -1,6 +1,6 @@
 - @photos.each do |pic|
   - photo_url_m = FlickRaw.url_m(flickr.photos.getInfo(:photo_id => pic.id))
-  .background-image{style:"background:url('#{photo_url_m}');"}
+  .background-image{style:"background:url('#{photo_url_m}')"}
     #layout.pure-g-r.content
       #nav.pure-u
         %a.nav-menu-button{:href => "#"} Menu
@@ -34,3 +34,5 @@
                 %a{:href => "#"}
                   %span.email-label-travel>
                   School
+        %br
+        = link_to "Log out", destroy_user_session_path, :method => :delete, :class => "pure-button pure-button-primary"
