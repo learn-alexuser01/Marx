@@ -259,8 +259,13 @@ Devise.setup do |config|
   # Omniauth setup
   require "omniauth-facebook"
   # disable SSL all the time
-  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE #if Rails.env.development?
-  config.omniauth :facebook, "542898845783988",
-    "788943a07c9ceb643cb5b86cdbe7bb9d",
-    {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
+  if Rails.env.development?
+    OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+    config.omniauth :facebook, "640019116031229",
+      "225d805229e71006c1bfc4c20ba351dd"
+  else
+    config.omniauth :facebook, "542898845783988",
+      "788943a07c9ceb643cb5b86cdbe7bb9d",
+      {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
+  end
 end
