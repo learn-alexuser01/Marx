@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   devise :omniauthable, :rememberable, :database_authenticatable, :registerable, :omniauth_providers => [:facebook]
 
-  has_many :pages, inverse_of: :owner, dependent: :destroy
+  has_many :pages, inverse_of: :owner, foreign_key: :owner_id, dependent: :destroy
 
   # omniauth stuff
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
