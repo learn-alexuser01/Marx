@@ -55,3 +55,12 @@ Page.delete = function(id, callback) {
     _method: 'DELETE'
   }, callback)
 }
+
+$().ready(function() {
+  $(".page_link").on('click', function(ev) {
+    Page.show(ev.target.dataset.id, function(data) {
+      $('#main').append('<pre>' + JSON.stringify(data) + '</pre>')
+    })
+    return false;
+  });
+})

@@ -2,14 +2,18 @@ class PagesController < ApplicationController
   def show
     @page = Page.find(params[:id])
     respond_to do |format|
-      format.json {render json: @page}
+      format.json {
+        render json: @page, include: :tiles
+      }
     end
   end
 
   def create
     Page.new({owner: current_user})
     respond_to do |format|
-      format.json {render json: @page}
+      format.json {
+        render json: @page, include: :tiles
+      }
     end
   end
 
@@ -19,7 +23,9 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     @page.partial_update(params[:updates])
     respond_to do |format|
-      format.json {render json: @page}
+      format.json {
+        render json: @page, include: :tiles
+      }
     end
   end
 
