@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130929013304) do
+ActiveRecord::Schema.define(version: 20130929043726) do
 
   create_table "pages", force: true do |t|
     t.string   "title"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20130929013304) do
   add_index "pages", ["owner_id"], name: "index_pages_on_owner_id"
 
   create_table "tiles", force: true do |t|
-    t.string   "contenttype"
     t.string   "title"
     t.text     "caption"
     t.integer  "col"
