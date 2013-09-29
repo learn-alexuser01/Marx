@@ -183,12 +183,14 @@ $().ready(function() {
 
   $(".new_page").on('click', function(ev) {
     Page.create(function(data) {
-      console.log("HERE")
-      console.log(data)
-      var link= $('<a></a>').addClass("page_link").data("id", data.id).attr('href', "#").text(data.title)
+      console.log(data.id)
+      var link= $('<a></a>').addClass("page_link").data('id', data.id).attr('href', "#").text(data.title).on('click', function(ev) {
+        Page.showAndUpdate(ev.target);
+        return false;
+      })
       $('.page_list').append(
         $('<li></li>').append( link))
-      Page.showAndUpdate(link);
+      Page.showAndUpdate(link[0]);
     });
     return false;
   })
