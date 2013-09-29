@@ -5,7 +5,7 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.json {
         @page = Page.find(params[:id])
-        @rel_photo = flickr.photos.search(:text => @page.title, :per_page =>'10', :page => 1, :sort => 'relevance', :safe_search => '1')
+#        @rel_photo = flickr.photos.search(:text => @page.title, :per_page =>'10', :page => 1, :sort => 'relevance', :safe_search => '1')
         render partial: 'pages/page.json'
 
       }
