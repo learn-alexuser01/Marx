@@ -92,7 +92,7 @@ Page.edit = function() {
   })
   $('.page-delete').on('click', Page.removeTile)
   $('#page-add').show()
-  $('#page-edit').hide()
+  $('#page-edit').html("Save")
   $("#page-add").on('click', function(ev) {
     var button = $('<button class="tmp-page page-delete"><img src="/x-button.png" /></button>')
       .on('click', Page.removeTile)
