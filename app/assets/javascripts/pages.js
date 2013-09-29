@@ -113,7 +113,7 @@ Page.edit = function() {
   $('#page-add').show()
   $('#page-edit').html("Save")
   $("#page-add").on('click', function(ev) {
-  
+
   var newWidget = '<li><div class="tile-bg-url pure-form pure-form-stacked" style="; width: '+
       (200 * 1 - 10)+
       'px; height: '+
@@ -143,8 +143,9 @@ Page.save = function() {
   var newTiles = []
   $('.gridster li').each(function(index, tile) {
     var data = $(tile).data()
-    data.title = $(tile).children("[name='title']").val()
-    data.caption = $(tile).children("[name='caption']").val()
+    data.title = $($(tile).children()[0]).children("[name='title']").val()
+    data.caption = $($(tile).children()[0]).children("[name='caption']").val()
+    console.log(data)
     if(data.id == null)
       newTiles.push(data)
     else
