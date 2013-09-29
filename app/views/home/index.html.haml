@@ -6,8 +6,10 @@
       %a.pure-menu-heading{href: "/"} Marx
       %a.pure-menu-heading{href: "/users/edit"}= current_user.name
       %ul
-        - @pages.each do |page|
-          %li
+        %li
+          %a{href:"#",:style => "color:white;",class: "new_page"} New Page
+        - @pages.each_with_index do |page, index|
+          %li{:class => ("menu-item-divided" if index==0)}
             %a{href:"#", class: "page_link", data:{id:page.id}}= page.title
         %li
           %a{href:"#",class: "page_link", data:{id:"5"}} Sample
@@ -24,7 +26,7 @@
       %h2 Subtitle where we should probably put author
     %br
     .gridster{:style => "text-align:center;"}
-      %ul{:style => "background-color: #CCCCCC; margin: auto; width: 760px; list-style: none;"}
+      %ul{:style => "background-color: #CCCCCC; margin: auto; width: 960px; list-style: none;"}
         %li{data:{row:"1",col:"1",sizex:"1",sizey:"1"},:style => "background-color: #FF0000;"}
         %li{data:{row:"1",col:"2",sizex:"1",sizey:"1"},:style => "background-color: #00FF00;"}
         %li{data:{row:"1",col:"3",sizex:"1",sizey:"1"},:style => "background-color: #0000FF;"}
