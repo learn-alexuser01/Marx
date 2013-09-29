@@ -86,19 +86,23 @@ Page.edit = function() {
   gridster.enable();
   $('.gridster li').each(function(index, tile) {
     console.log(Page.current.tiles[index].sizex)
-    tile.innerHTML = '<div class="tile-bg-url" style="; width: '+
+    tile.innerHTML = '<div class="tile-bg-url pure-form pure-form-stacked" style="; width: '+
       (200 * Page.current.tiles[index].sizex - 10)+
       'px; height: '+
       (200 * Page.current.tiles[index].sizey - 10)+
-      'px;" ><input type="text" name="title" value="'+
-      Page.current.tiles[index].title+'"></input>' +
-      '<textarea name="caption">'+Page.current.tiles[index].caption+'</textarea>' +
-      '<button class="page-delete" style="background: none; border:none !important;"><img src="/x-button.png" /></button></div>'
+      'px; background: #111111;" ><input type="text" name="title" placeholder="Title or URL" value="'+
+      Page.current.tiles[index].title+'" style="display:table-cell; width:100%"></input>' +
+      '<textarea style="display:table-cell; width:100%" name="caption" placeholder="Text or Caption">'+Page.current.tiles[index].caption+'</textarea>' +
+      '<button class="page-delete" style="background: none; border:none !important; position: absolute; bottom:0;right:0;"><img src="/x-button.png" /></button></div>'
   })
   $('.page-delete').on('click', Page.removeTile)
   $('#page-add').show()
   $('#page-edit').html("Save")
   $("#page-add").on('click', function(ev) {
+
+
+
+    
     var button = $('<button class="tmp-page page-delete"><img src="/x-button.png" /></button>')
       .on('click', Page.removeTile)
     gridster.add_widget($('<li><input type="text" name="title" placeholder="Title or URL">' +
