@@ -1,0 +1,2 @@
+.tile-bg-flickr{:style => "width: #{200*tile.sizex}px;height: #{200*tile.sizey}px;background-position: center center;background-repeat: no-repeat;background-image: url(#{imgurl});"}
+    %aside.photo-box{:style => "position: absolute;bottom: 0;border-radius: 0px;left: 0;padding: 5px;color: white;width: #{200*tile.sizex-10}px;"}= tile.caption[0..50*tile.sizex].gsub(/\s\w+\s*$/, '...')

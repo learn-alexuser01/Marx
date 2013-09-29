@@ -1,32 +1,45 @@
-#layout.pure-g-r
-  %a#menuLink.pure-menu-link{href: "#menu"}
-    %span
-  #menu.pure-u
-    .pure-menu.pure-menu-open
-      %a.pure-menu-heading{href: "/"} Marx
-      %a.pure-menu-heading{href: "/users/edit"}= current_user.name
-      %ul{class: "page_list"}
-        %li
-          %a{href:"#",:style => "color:white;",class: "new_page"} New Page
-        - @pages.each_with_index do |page, index|
-          %li{:class => ("menu-item-divided" if index==0)}
-            %a{href:"#", class: "page_link", data:{id:page.id}}= page.title
-      %br
-      .pure-menu-selected{:style => "text-align: center; list-style-type: none; position: absolute; bottom: 0; width: 100%;"}
-        = link_to "Log out", destroy_user_session_path, :method => :delete, :style => "padding: 12px 0px;"
-  #main.pure-u-1
-    .header
-      %h1 Page Title Goes Here!
-      %h2 Subtitle where we should probably put author
-    %br
-    .gridster{:style => "text-align:center;"}
-      %ul{:style => "background-color: #CCCCCC; margin: auto; width: 960px; list-style: none;"}
-        %li{data:{row:"1",col:"1",sizex:"1",sizey:"1"},:style => "background-color: #FF0000;"}
-        %li{data:{row:"1",col:"2",sizex:"1",sizey:"1"},:style => "background-color: #00FF00;"}
-        %li{data:{row:"1",col:"3",sizex:"1",sizey:"1"},:style => "background-color: #0000FF;"}
-        %li{data:{row:"1",col:"4",sizex:"1",sizey:"1"},:style => "background-color: #FF0000;"}
-        %li{data:{row:"1",col:"5",sizex:"1",sizey:"1"},:style => "background-color: #00FF00;"}
-        %li{data:{row:"2",col:"1",sizex:"1",sizey:"1"},:style => "background-color: #0000FF;"}
-        %li{data:{row:"2",col:"2",sizex:"1",sizey:"1"},:style => "background-color: #FF0000;"}
-        %li{data:{row:"2",col:"3",sizex:"1",sizey:"1"},:style => "background-color: #00FF00;"}
-        %li{data:{row:"2",col:"4",sizex:"1",sizey:"1"},:style => "background-color: #0000FF;"}
+- photo_url_m = flickr.photos.getSizes(photo_id: @photos.to_a.sample.id).to_a.last["source"]
+%body.blur{:style => "background: url(#{photo_url_m}); background-size: cover; height: auto !important; background-attachment:fixed; background-position:center center; background-repeat: no-repeat;"}
+  #layout.pure-g-r
+    %a#menuLink.pure-menu-link{href: "#menu"}
+      %span
+    #menu.pure-u
+      .pure-menu.pure-menu-open
+        %a.pure-menu-heading{style:"text-align:center; margin-left: -15px;", href: "/"} Marx Bookmarks
+        %a.pure-menu-heading{href: "/users/edit"}= current_user.name
+        %ul{class: "page_list"}
+          %li
+            %a{href:"#",:style => "color:white;",class: "new_page"} New Page
+          - @pages.each_with_index do |page, index|
+            %li{:class => ("menu-item-divided" if index==0)}
+              %a{href:"#", class: "page_link", data:{id:page.id}}= page.title
+        %br
+        .pure-menu-selected{:style => "text-align: center; list-style-type: none; position: absolute; bottom: 0; width: 100%;"}
+          = link_to "Log out", destroy_user_session_path, :method => :delete, :style => "padding: 12px 0px;"
+    #main.pure-u-1
+      .header{style:"padding-bottom:0px; margin-bottom:10px;"}
+        %span
+          %h1 Page Title Goes Here!
+          %h2 Subtitle where we should probably put author
+        .buttons{style:"float: right; margin-top: -80px;"}
+          .pure-form
+            %input.pure-input-2-3{style:"margin-left: 0px; height: 35px;", :type => "text" }
+            %button.pure-button.pure-button-success Add
+            %ul{style:"margin-left: 25px;"}
+              = link_to 'Share on Facebook', '#', :class => "fb_share"
+              = facebook_share_once
+              %button.pure-button.pure-button-warning Edit
+              %button.pure-button.pure-button-error Remove
+
+        %br
+      .gridster{:style => "text-align:center;"}
+        %ul{:style => " margin: auto; width: 960px; list-style: none;"}
+          %li{data:{row:"1",col:"1",sizex:"1",sizey:"1"},:style => "background-color: #FF0000;"}
+          %li{data:{row:"1",col:"2",sizex:"1",sizey:"1"},:style => "background-color: #00FF00;"}
+          %li{data:{row:"1",col:"3",sizex:"1",sizey:"1"},:style => "background-color: #0000FF;"}
+          %li{data:{row:"1",col:"4",sizex:"1",sizey:"1"},:style => "background-color: #FF0000;"}
+          %li{data:{row:"1",col:"5",sizex:"1",sizey:"1"},:style => "background-color: #00FF00;"}
+          %li{data:{row:"2",col:"1",sizex:"1",sizey:"1"},:style => "background-color: #0000FF;"}
+          %li{data:{row:"2",col:"2",sizex:"1",sizey:"1"},:style => "background-color: #FF0000;"}
+          %li{data:{row:"2",col:"3",sizex:"1",sizey:"1"},:style => "background-color: #00FF00;"}
+          %li{data:{row:"2",col:"4",sizex:"1",sizey:"1"},:style => "background-color: #0000FF;"}
