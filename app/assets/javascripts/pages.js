@@ -155,22 +155,15 @@ Page.save = function() {
   Page.update(Page.current.id, function(){}, p, newTiles, updatedTiles, Page.removedTileIds);
 }
 
+Page.showAndUpdate = function() {
+  Page.show(ev.target.dataset.id, function(data) {
+    Page.updateCurrent(ev.target);
+    Page.render(data)
+  })
+}
+
 $().ready(function() {
   $(".page_link").on('click', function(ev) {
-    Page.show(ev.target.dataset.id, function(data) {
-      Page.updateCurrent(ev.target);
-      Page.render(data)
-    })
-    return false;
-  });
-
-  $(".new_page").on('click', function(ev) {
-    Page.create(new function(data){
-      $(".page_list").append("<li><a href='#' class='page_link' data-id='"
-        + data['id']
-        +"'>Untitled</a></li>")
-      $('.page_list').last().first().get().click()
-    })
     return false;
   });
 
@@ -186,6 +179,19 @@ $().ready(function() {
     Page.updateCurrent(li)
     Page.show(id, Page.render)
   }
+
+  $(".new_page").on('click', function(ev) {
+    Page.create(function(data) {
+      console.log("HERE")
+      console.log(data)
+      $('.page_list').append(
+        $('<li></li>').append(
+          $('<a></a>').addClass("page_link").data("id", data.id).attr('href', "#").text(data.title)
+        ))
+      Page.showAndUpdate();
+    });
+    return false;
+  })
 })
 
 Page.editButtonNormalMode = function () {
