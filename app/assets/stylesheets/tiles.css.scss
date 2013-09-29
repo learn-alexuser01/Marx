@@ -1,0 +1,43 @@
+.tile-bg-flickr {
+  background-color: #8363b0;
+  padding: 5px;
+  padding-right: 7px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  width: 200px;
+  height: 200px;
+  text-align: center;
+
+    p {
+      color: #fff;
+    }
+
+    img {
+      border: 1px solid #fff;
+    }
+}
+
+.tile-bg-url {
+  background-color: #11A465;
+  padding: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  width: 200px;
+  height: 200px;
+
+    p {
+      color: #fff;
+    }
+
+    h3 {
+      color: #efefef;
+    }
+}
+
+.tile-bg-youtube {
+  background-color: #FE6051;
+  padding: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  color: #fff;
+}
