@@ -27,11 +27,11 @@ class PagesController < ApplicationController
   # params should be automatically parsed from JSON content, except :id
   # make sure MIME type is correct
   def update
-    @page = Page.find(params[:id])
+    @page = Page.find(params[:page][:id])
     if current_user.id != @page.owner_id
       not_found
     end
-    @page.partial_update(params[:updates])
+    @page.partial_update(params)
     respond_to do |format|
       format.json {
         render partial: 'pages/page.json'

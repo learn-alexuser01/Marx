@@ -1,7 +1,7 @@
 Page = {}
 Page.current = null
 Page.highlightedMenuEntry = null
-Page.removedTilesIds = Array()
+Page.removedTileIds = Array()
 
 // callback receives the page content
 Page.show = function(id, callback) {
@@ -17,18 +17,29 @@ Page.create = function(callback) {
 // newTiles, updatedTiles and deletedTiles are arrays of Tile objects
 // id does not need to be set for new tiles.
 // callback receives the page content
-Page.update = function(id, callback, page, newTiles, updatedTiles, deletedTileIds) {
 
+function copyTile(tile) {
+  return {
+    sizex: tile.sizex,
+    sizey: tile.sizey,
+    row: tile.row,
+    col: tile.col,
+    title: tile.title,
+    caption: tile.caption,
+    id: tile.id
+  }
+}
+Page.update = function(id, callback, page, newTiles, updatedTiles, removedTileIds) {
   var n = new Array();
   for(var i = 0; i < newTiles.length; i++) {
-    n[i] = newTiles[i]
+    n[i] = copyTile(newTiles[i])
   }
 
   var u = new Array();
   for(var i = 0; i < updatedTiles.length; i++) {
     u[i] = {
       id: updatedTiles[i].id,
-      tile: updatedTiles[i]
+      tile: copyTile(updatedTiles[i])
     }
   }
 
@@ -37,14 +48,17 @@ Page.update = function(id, callback, page, newTiles, updatedTiles, deletedTileId
     tiles: {
       new: n,
       updated: u,
-      deleted: deletedTileIds
+      deleted: Page.removedTileIds
     }
   }
-
-  $.post('/pages/' + id + '.json', {
-    _method: 'PUT',
-    updates: updates
-  }, callback)
+  $.ajax({
+    type: "PUT",
+    url: '/pages/'+ id + '.json',
+    data: JSON.stringify(updates),
+    contentType: 'application/json', // format of request payload
+    dataType: 'json', // format of the response
+    success: callback
+  });
 }
 
 // callback receives nothing
@@ -109,23 +123,24 @@ Page.removeTile = function(ev) {
     li = li.parent()
   gridster.remove_widget(li)
   if(li.data('id') != null) {
-    Page.removedTilesIds.push(li.data('id'))
+    Page.removedTileIds.push(li.data('id'))
   }
 }
 
 Page.save = function() {
-  updatedTiles = []
-  newTiles = []
+  var updatedTiles = []
+  var newTiles = []
   $('.gridster li').each(function(index, tile) {
-    var data = tile.data()
+    var data = $(tile).data()
     data.title = $(tile).children("[name='title']").val()
     data.caption = $(tile).children("[name='caption']").val()
     if(data.id == null)
-      newTiles.push()
+      newTiles.push(data)
     else
-      updatedTiles.push(tile)
+      updatedTiles.push(data)
   })
-  Page.update(Page.current.id, callback, page, newTiles, updatedTiles, Page.deletedTileIds);
+  var p= {id: Page.current.id, title: Page.current.title}
+  Page.update(Page.current.id, function(){}, p, newTiles, updatedTiles, Page.removedTileIds);
 }
 
 $().ready(function() {
@@ -147,8 +162,10 @@ $().ready(function() {
     return false;
   });
 
+  Page.editButtonDoStuff = Page.editButtonNormalMode;
+
   $("#page-edit").on('click', function(ev) {
-    Page.edit()
+    Page.editButtonDoStuff();
   })
 
   if(window.location.pathname.indexOf("/pages/") >= 0) {
@@ -159,3 +176,18 @@ $().ready(function() {
   }
 })
 
+Page.editButtonNormalMode = function () {
+  Page.edit();
+  Page.editButtonDoStuff = Page.editButtonSaveMode
+}
+
+Page.editButtonSaveMode = function () {
+  console.log("here");
+  Page.save();
+  Page.show(Page.current.id, Page.render)
+  Page.removedTileIds = []
+  $('#page-edit').html("Edit")
+  $('#page-add').hide()
+  $('#page-add').unbind('click')
+  Page.editButtonDoStuff = Page.editButtonNormalMode
+}

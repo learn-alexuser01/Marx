@@ -4,7 +4,6 @@ class Page < ActiveRecord::Base
 
   def partial_update(update)
     page_update = update[:page]
-    page_update.delete(:id)
     self.update!(page_update)
 
     tile_update = update[:tiles]
@@ -13,6 +12,15 @@ class Page < ActiveRecord::Base
     updated_tiles = tile_update[:updated]
     deleted_tiles = tile_update[:deleted]
 
+    if new_tiles == nil
+      new_tiles = []
+    end
+    if updated_tiles == nil
+      updated_tiles = []
+    end
+    if deleted_tiles == nil
+      deleted_tiles = []
+    end
     new_tiles.each do |tile|
       tile.delete(:id)
       self.tiles.create!(tile)
