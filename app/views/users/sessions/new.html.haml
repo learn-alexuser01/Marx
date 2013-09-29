@@ -1,5 +1,5 @@
 - photo_url_m = flickr.photos.getSizes(photo_id: @photos.to_a.sample.id).to_a.last["source"]
-%body{:style => "background: url(#{photo_url_m}); background-size: cover; height: auto !important;"}
+%body{:style => "background: url(#{photo_url_m}); background-size: cover; height: auto !important; background-attachment:fixed; background-position:center center; background-repeat: no-repeat;"}
   .container-box{style:""}
     .login-box  
       %h2 Sign in
