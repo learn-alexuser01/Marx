@@ -7,6 +7,20 @@ class ApplicationController < ActionController::Base
     return flickr.interestingness.getList( :per_page => 1, :page => 1 )
   end
 
+  def parse_flickr_url(url)
+    re = /flickr\.com\/photos\/[^\/]+\/(?<img>[0-9]+)/i
+    m = re.match(url)
+    return nil if m.nil?
+    m[1]
+  end
+
+  def parse_youtube_url(url)
+    re = /youtube\.com\/watch\?v=(\w{11})/i
+    m = re.match(url)
+    return nil if m.nil?
+    m[1]
+  end
+
   def not_found
       raise ActionController::RoutingError.new('Not Found')
   end
