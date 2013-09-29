@@ -92,9 +92,12 @@ $().ready(function() {
   });
 
   $(".new_page").on('click', function(ev) {
-    $(".page_list").append("<li><a>Untitled</a></li>")
     Page.create(new function(data){
-      console.log(data)
+      // $(".page_list").append("<li><a href='#' class='page_link' data-id='"
+      //   + data['id']
+      //   +"'>Untitled</a></li>")
+      // $('.page_list').last().first()[0].click()
+      console.log(JSON.stringify(data))
     })
   });
 })
