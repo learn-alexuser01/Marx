@@ -14,8 +14,9 @@
           %a{href:"#"} Sample2
         %li.menu-item-divided
           %a{href: "#"} Divider Sample
-    %br
-      = link_to "Log out", destroy_user_session_path, :method => :delete, :class => "pure-button pure-button-primary"
+      %br
+      .button-container{:style => "padding: 0px 15px;"}
+        = link_to "Log out", destroy_user_session_path, :method => :delete, :class => "pure-button pure-button-primary", :style => "color: #fff;"
   #main.pure-u-1
     .header
       %h1 Page Title Goes Here!
