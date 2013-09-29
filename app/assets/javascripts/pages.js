@@ -99,26 +99,37 @@ Page.edit = function() {
   var gridster = $('.gridster ul').gridster().data('gridster')
   gridster.enable();
   $('.gridster li').each(function(index, tile) {
-    tile.innerHTML = '<input type="text" name="title" value="'+
-      Page.current.tiles[index].title+'"></input>' +
-      '<textarea name="caption">'+Page.current.tiles[index].caption+'</textarea>' +
-      '<button class="page-delete"><img src="/x-button.png" /></button>'
+    console.log(Page.current.tiles[index].sizex)
+    tile.innerHTML = '<div class="tile-bg-url pure-form pure-form-stacked" style="; width: '+
+      (200 * Page.current.tiles[index].sizex - 10)+
+      'px; height: '+
+      (200 * Page.current.tiles[index].sizey - 10)+
+      'px; background: #111111;" ><input type="text" name="title" placeholder="Title or URL" value="'+
+      Page.current.tiles[index].title+'" style="display:table-cell; width:100%"></input>' +
+      '<textarea style="display:table-cell; width:100%" name="caption" placeholder="Text or Caption">'+Page.current.tiles[index].caption+'</textarea>' +
+      '<button class="page-delete" style="background: none; border:none !important; position: absolute; bottom:0;right:0;"><img src="/x-button.png" /></button></div>'
   })
   $('.page-delete').on('click', Page.removeTile)
   $('#page-add').show()
   $('#page-edit').html("Save")
   $("#page-add").on('click', function(ev) {
-    var button = $('<button class="tmp-page page-delete"><img src="/x-button.png" /></button>')
-      .on('click', Page.removeTile)
-    gridster.add_widget($('<li><input type="text" name="title" placeholder="Title or URL">' +
-        '<textarea name="caption" placeholder="Caption"></textarea></li>')
-        .append(button))
+  
+  var newWidget = '<li><div class="tile-bg-url pure-form pure-form-stacked" style="; width: '+
+      (200 * 1 - 10)+
+      'px; height: '+
+      (200 * 1 - 10)+
+      'px; background: #111111;" ><input type="text" name="title" placeholder="Title or URL" style="display:table-cell; width:100%"></input>' +
+      '<textarea style="display:table-cell; width:100%" name="caption" placeholder="Text or Caption"></textarea>' +
+      '<button class="tmp-page page-delete" style="background: none; border:none !important; position: absolute; bottom:0;right:0;"><img src="/x-button.png" /></button></div></li>'
+    gridster.add_widget($(newWidget))
+
+    $('.page-delete').on('click', Page.removeTile)
   })
 }
 
 Page.removeTile = function(ev) {
   var gridster = $('.gridster ul').gridster().data('gridster')
-  var li = $(ev.target).parent()
+  var li = $(ev.target).parent().parent()
   if(!li.is('li'))
     li = li.parent()
   gridster.remove_widget(li)

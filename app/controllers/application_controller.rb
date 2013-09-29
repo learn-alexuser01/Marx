@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def interesting_photo
     v = flickr.interestingness.getList( :per_page => 10, :page => 1 )
   end
-
+  
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end
