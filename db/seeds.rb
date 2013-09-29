@@ -15,42 +15,33 @@ if Rails.env.development?
     password_confirmation: "password"
   })
   page1 = Page.create!({
-    title: "Test Page",
+    title: "Hire me!",
     privacy: "public",
     owner: user1
   })
   tile1 = Tile.create!({
-    title: "http://www.flickr.com/photos/66294045@N05/9969686144/",
-    caption: "Ducks!",
+    title: "http://www.flickr.com/photos/93566551@N07/10003059995/",
+    caption: "Shrav Mehta",
     col: 1,
     row: 1,
-    sizex: 2,
+    sizex: 1,
     sizey: 1,
     page: page1
   })
   tile2 = Tile.create!({
-    title: "http://www.youtube.com/watch?v=Z9uUzryUWnA",
-    caption: "OPRAHMONEY",
-    col: 3,
+    title: "http://www.flickr.com/photos/93566551@N07/10003059394/",
+    caption: "Douglas Chen",
+    col: 2,
     row: 1,
-    sizex: 2,
-    sizey: 2,
+    sizex: 1,
+    sizey: 1,
     page: page1
   })
   tile3 = Tile.create!({
-    title: "CoolBeans",
-    caption: "JellyBeans",
-    col: 5,
+    title: "http://www.flickr.com/photos/93566551@N07/10003057894/",
+    caption: "Prem Nair",
+    col: 3,
     row: 1,
-    sizex: 1,
-    sizey: 2,
-    page: page1
-  })
-  tile4 = Tile.create!({
-    title: "http://internetolympiad.org",
-    caption: "NIMO",
-    col: 1,
-    row: 2,
     sizex: 1,
     sizey: 1,
     page: page1

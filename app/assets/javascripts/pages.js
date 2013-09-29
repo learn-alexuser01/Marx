@@ -1,4 +1,7 @@
 Page = {}
+Page.current = null
+Page.highlightedMenuEntry = null
+Page.removedTilesIds = Array()
 
 // callback receives the page content
 Page.show = function(id, callback) {
@@ -14,7 +17,7 @@ Page.create = function(callback) {
 // newTiles, updatedTiles and deletedTiles are arrays of Tile objects
 // id does not need to be set for new tiles.
 // callback receives the page content
-Page.update = function(id, callback, page, newTiles, updatedTiles, deletedTiles) {
+Page.update = function(id, callback, page, newTiles, updatedTiles, deletedTileIds) {
 
   var n = new Array();
   for(var i = 0; i < newTiles.length; i++) {
@@ -29,17 +32,12 @@ Page.update = function(id, callback, page, newTiles, updatedTiles, deletedTiles)
     }
   }
 
-  var d = new Array();
-  for(var i = 0; i < deletedTiles.length; i++) {
-    d[i] = deletedTiles[i].id
-  }
-
   var updates = {
     page: page,
     tiles: {
       new: n,
       updated: u,
-      deleted: d
+      deleted: deletedTileIds
     }
   }
 
@@ -56,9 +54,9 @@ Page.delete = function(id, callback) {
   }, callback)
 }
 
-Page.currentTiles = null;
 
 Page.render = function(data) {
+  Page.current = data
   $('.header h1').html(data.title)
   $('.header h2').html(data.owner_name)
   var gridster = $('.gridster ul').gridster().data('gridster')
@@ -67,17 +65,14 @@ Page.render = function(data) {
     gridster.remove_widget(existing[i]);
   }
   var tiles = data.tiles
-  Page.currentTiles = tiles
   for(i = 0; i < tiles.length; i++) {
     var tile = tiles[i];
     gridster.add_widget('<li class="gs_w">' + tile.rendered_content +
-        '</li>', tile.sizex, tile.sizey, tile.col, tile.row)
+        '</li>', tile.sizex, tile.sizey, tile.col, tile.row).data('id', tile.id)
   }
   gridster.disable()
   window.history.pushState("page", data.title + " - Marx", "/pages/" + data.id);
 }
-
-Page.currentEntry = null
 
 Page.updateCurrent = function(target) {
   if(Page.highlightedMenuEntry != null)
@@ -91,13 +86,13 @@ Page.edit = function() {
   gridster.enable();
   $('.gridster li').each(function(index, tile) {
     tile.innerHTML = '<input type="text" name="title" value="'+
-      Page.currentTiles[index].title+'"></input>' +
-      '<textarea name="caption">'+Page.currentTiles[index].caption+'</textarea>' +
+      Page.current.tiles[index].title+'"></input>' +
+      '<textarea name="caption">'+Page.current.tiles[index].caption+'</textarea>' +
       '<button class="page-delete"><img src="/x-button.png" /></button>'
   })
   $('.page-delete').on('click', Page.removeTile)
   $('#page-add').show()
-  $('#page-edit').hide()
+  $('#page-edit').html("Save")
   $("#page-add").on('click', function(ev) {
     var button = $('<button class="tmp-page page-delete"><img src="/x-button.png" /></button>')
       .on('click', Page.removeTile)
@@ -109,11 +104,28 @@ Page.edit = function() {
 
 Page.removeTile = function(ev) {
   var gridster = $('.gridster ul').gridster().data('gridster')
-  gridster.remove_widget(ev.target.parent)
+  var li = $(ev.target).parent()
+  if(!li.is('li'))
+    li = li.parent()
+  gridster.remove_widget(li)
+  if(li.data('id') != null) {
+    Page.removedTilesIds.push(li.data('id'))
+  }
 }
 
 Page.save = function() {
-
+  updatedTiles = []
+  newTiles = []
+  $('.gridster li').each(function(index, tile) {
+    var data = tile.data()
+    data.title = $(tile).children("[name='title']").val()
+    data.caption = $(tile).children("[name='caption']").val()
+    if(data.id == null)
+      newTiles.push()
+    else
+      updatedTiles.push(tile)
+  })
+  Page.update(Page.current.id, callback, page, newTiles, updatedTiles, Page.deletedTileIds);
 }
 
 $().ready(function() {
@@ -131,7 +143,6 @@ $().ready(function() {
         + data['id']
         +"'>Untitled</a></li>")
       $('.page_list').last().first().get().click()
-      console.log(data['id'])
     })
     return false;
   });
