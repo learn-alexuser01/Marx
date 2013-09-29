@@ -90,10 +90,15 @@ Page.edit = function() {
   var gridster = $('.gridster ul').gridster().data('gridster')
   gridster.enable();
   $('.gridster li').each(function(index, tile) {
-    tile.innerHTML = '<input type="text" name="title" value="'+
+    console.log(tile.sizex+""+tile.sizey)
+    tile.innerHTML = '<div class="tile-bg-url" style="; width: '+
+      (200 * tile.sizex - 10)+
+      ' px; height: '+
+      (200 * tile.sizey - 10)+
+      ' px;" ><input type="text" name="title" value="'+
       Page.currentTiles[index].title+'"></input>' +
       '<textarea name="caption">'+Page.currentTiles[index].caption+'</textarea>' +
-      '<button class="page-delete"><img src="/x-button.png" /></button>'
+      '<button class="page-delete" style="background: none; border:none !important;"><img src="/x-button.png" /></button></div>'
   })
   $('.page-delete').on('click', Page.removeTile)
   $('#page-add').show()
