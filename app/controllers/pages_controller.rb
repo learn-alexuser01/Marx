@@ -2,10 +2,15 @@ class PagesController < ApplicationController
   before_filter :authenticate_user!
 
   def show
-    @page = Page.find(params[:id])
     respond_to do |format|
       format.json {
+        @page = Page.find(params[:id])
         render partial: 'pages/page.json'
+      }
+      format.html {
+        @photos = flickr.interestingness.getList( :per_page => 10, :page => 1 )
+        @pages = Page.where({owner: current_user}).all
+        render 'home/index'
       }
     end
   end
