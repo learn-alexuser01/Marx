@@ -156,7 +156,7 @@ Page.save = function() {
 }
 
 Page.showAndUpdate = function(target) {
-  Page.show(target.dataset.id, function(data) {
+  Page.show($(target).data('id'), function(data) {
     Page.updateCurrent(target);
     Page.render(data)
   })
@@ -190,7 +190,7 @@ $().ready(function() {
       })
       $('.page_list').append(
         $('<li></li>').append( link))
-      Page.showAndUpdate(link[0]);
+      link[0].click()
     });
     return false;
   })
