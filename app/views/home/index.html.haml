@@ -19,11 +19,13 @@
       %span
         %h1 Page Title Goes Here!
         %h2 Subtitle where we should probably put author
-      .buttons{style:"float: right; margin-top: -55px;"}
-        %ul
-          %button.pure-button.pure-button-success Add
-          %button.pure-button.pure-button-warning Edit
-          %button.pure-button.pure-button-error Remove
+      .buttons{style:"float: right; margin-top: -80px;"}
+        .pure-form
+          %input.pure-input-2-3{style:"margin-left:104px;", :type => "text" }
+          %ul
+            %button.pure-button.pure-button-success Add
+            %button.pure-button.pure-button-warning Edit
+            %button.pure-button.pure-button-error Remove
 
       %br
     .gridster{:style => "text-align:center;"}
