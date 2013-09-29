@@ -29,6 +29,8 @@
     -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);
 
+  overflow:auto;
+
     p {
       color: #fff;
     }
@@ -39,10 +41,10 @@
 }
 
 .tile-bg-youtube {
-  background-color: #FE6051;
-  padding: 5px;
+  background-color: #1f8dd6;
   box-shadow: 0 0 5px rgba(0,0,0,0.3);
     -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
     -moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);
   color: #fff;
+  padding:5px;
 }

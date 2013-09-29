@@ -1,4 +1,4 @@
-.tile-bg-youtube
-  %iframe.tile-youtube-player{:allowFullScreen => "", :frameborder => "0", :height => "370", :src => "http://www.youtube.com/embed/#{id}", :title => "YouTube video player", :type => "text/html", :width => "385"}
-  %p 
-    = tile.caption
+.tile-bg-youtube{:style => "width: #{200*tile.sizex-10}px;height: #{200*tile.sizey-10}px;"}
+  %p{:style => "margin: 0px 0px 0px 0px;"}
+    = tile.caption[0..33*tile.sizex].gsub(/\s\w+\s*$/, '...')
+  %iframe.tile-youtube-player{:allowFullScreen => "", :frameborder => "0", :height => 200*tile.sizey-30, :src => "http://www.youtube.com/embed/#{id}?rel=0;3&amp;autohide=1&amp;showinfo=0", :title => "YouTube video player", :type => "text/html", :width => 200*tile.sizex, :style => "position: absolute;bottom: 0;left:0;"}
