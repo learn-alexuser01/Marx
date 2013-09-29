@@ -60,10 +60,10 @@ Page.highlightedMenuEntry = null
 
 $().ready(function() {
   $(".page_link").on('click', function(ev) {
-    $(ev.target).parent().addClass("pure-menu-selected");
     if(Page.highlightedMenuEntry != null)
       Page.highlightedMenuEntry.removeClass("pure-menu-selected");
     Page.highlightedMenuEntry = $(ev.target).parent();
+    Page.highlightedMenuEntry.addClass("pure-menu-selected");
     Page.show(ev.target.dataset.id, function(data) {
       $('#main').append('<pre>' + JSON.stringify(data) + '</pre>')
     })
