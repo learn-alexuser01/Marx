@@ -111,6 +111,7 @@ Page.edit = function() {
   })
   $('.page-delete').on('click', Page.removeTile)
   $('#page-add').show()
+  $('#page-add-big').show()
   $('#page-edit').html("Save")
   $("#page-add").on('click', function(ev) {
 
@@ -122,6 +123,19 @@ Page.edit = function() {
       '<textarea style="display:table-cell; width:100%" name="caption" placeholder="Text or Caption"></textarea>' +
       '<button class="tmp-page page-delete" style="background: none; border:none !important; position: absolute; bottom:0;right:0;"><img src="/x-button.png" /></button></div></li>'
     gridster.add_widget($(newWidget))
+
+    $('.page-delete').on('click', Page.removeTile)
+  })
+  $("#page-add-big").on('click', function(ev) {
+
+  var newWidget2 = '<li><div class="tile-bg-url pure-form pure-form-stacked" style="; width: '+
+      (200 * 2 - 10)+
+      'px; height: '+
+      (200 * 2 - 10)+
+      'px; background: #111111;" ><input type="text" name="title" placeholder="Title or URL" style="display:table-cell; width:100%"></input>' +
+      '<textarea style="display:table-cell; width:100%" name="caption" placeholder="Text or Caption"></textarea>' +
+      '<button class="tmp-page page-delete" style="background: none; border:none !important; position: absolute; bottom:0;right:0;"><img src="/x-button.png" /></button></div></li>'
+    gridster.add_widget($(newWidget2))
 
     $('.page-delete').on('click', Page.removeTile)
   })
@@ -208,5 +222,7 @@ Page.editButtonSaveMode = function () {
   $('#page-edit').html("Edit")
   $('#page-add').hide()
   $('#page-add').unbind('click')
+  $('#page-add-big').hide()
+  $('#page-add-big').unbind('click')
   Page.editButtonDoStuff = Page.editButtonNormalMode
 }
