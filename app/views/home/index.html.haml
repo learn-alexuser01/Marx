@@ -7,15 +7,16 @@
       %ul
         - @pages.each do |page|
           %li
-            %a{href:"#"} = page.title
+            %a{href:"#"}= page.title
         %li
           %a{href:"#"} Sample
         %li
           %a{href:"#"} Sample2
         %li.menu-item-divided
           %a{href: "#"} Divider Sample
-    %br
-      = link_to "Log out", destroy_user_session_path, :method => :delete, :class => "pure-button pure-button-primary"
+      %br
+      %li.pure-menu-selected{:style => "text-align: center; list-style-type: none; margin-left: -20px;"}
+        = link_to "Log out", destroy_user_session_path, :method => :delete
   #main.pure-u-1
     .header
       %h1 Page Title Goes Here!
