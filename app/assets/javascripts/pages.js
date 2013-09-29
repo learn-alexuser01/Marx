@@ -51,6 +51,7 @@ Page.update = function(id, callback, page, newTiles, updatedTiles, removedTileId
       deleted: Page.removedTileIds
     }
   }
+  console.log(updates);
   $.ajax({
     type: "PUT",
     url: '/pages/'+ id + '.json',
@@ -135,7 +136,7 @@ Page.edit = function() {
       'px; background: #111111;" ><input type="text" name="title" placeholder="Title or URL" style="display:table-cell; width:100%"></input>' +
       '<textarea style="display:table-cell; width:100%" name="caption" placeholder="Text or Caption"></textarea>' +
       '<button class="tmp-page page-delete" style="background: none; border:none !important; position: absolute; bottom:0;right:0;"><img src="/x-button.png" /></button></div></li>'
-    gridster.add_widget($(newWidget2))
+    gridster.add_widget($(newWidget2), 2, 2)
 
     $('.page-delete').on('click', Page.removeTile)
   })
