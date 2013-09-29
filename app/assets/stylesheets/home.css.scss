@@ -18,7 +18,7 @@
 
   a {
     margin-top: 10px;
-    color: #fff;
+    color: #fff !important;
     font-weight: 900;
   }
 
@@ -39,6 +39,11 @@
   color: #fff;
   
   .sign-in-links {
+    color: #fff;
+
+    a {
+      color: #fff;
+    }
   }
 
   textarea:focus, input:focus{
@@ -48,6 +53,7 @@
   h2 {
     font-family: 'Lato';
     font-weight: 700;
+    color: #fff;
   }
 
   #user_email {
