@@ -93,6 +93,9 @@ $().ready(function() {
 
   $(".new_page").on('click', function(ev) {
     $(".page_list").append("<li><a>Untitled</a></li>")
+    Page.create(new function(data){
+      console.log(data)
+    })
   });
 })
 
