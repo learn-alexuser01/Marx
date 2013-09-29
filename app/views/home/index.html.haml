@@ -15,10 +15,17 @@
       .pure-menu-selected{:style => "text-align: center; list-style-type: none; position: absolute; bottom: 0; width: 100%;"}
         = link_to "Log out", destroy_user_session_path, :method => :delete, :style => "padding: 12px 0px;"
   #main.pure-u-1
-    .header
-      %h1 Page Title Goes Here!
-      %h2 Subtitle where we should probably put author
-    %br
+    .header{style:"padding-bottom:0px; margin-bottom:10px;"}
+      %span
+        %h1 Page Title Goes Here!
+        %h2 Subtitle where we should probably put author
+      .buttons{style:"float: right; margin-top: -55px;"}
+        %ul
+          %button.pure-button.pure-button-success Add
+          %button.pure-button.pure-button-warning Edit
+          %button.pure-button.pure-button-error Remove
+
+      %br
     .gridster{:style => "text-align:center;"}
       %ul{:style => "background-color: #CCCCCC; margin: auto; width: 960px; list-style: none;"}
         %li{data:{row:"1",col:"1",sizex:"1",sizey:"1"},:style => "background-color: #FF0000;"}
