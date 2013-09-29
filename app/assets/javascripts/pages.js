@@ -92,11 +92,24 @@ Page.edit = function() {
   $('.gridster li').each(function(index, tile) {
     tile.innerHTML = '<input type="text" name="title" value="'+
       Page.currentTiles[index].title+'"></input>' +
-      '<textarea>'+Page.currentTiles[index].caption+'</textarea>' +
+      '<textarea name="caption">'+Page.currentTiles[index].caption+'</textarea>' +
       '<button class="page-delete"><img src="/x-button.png" /></button>'
   })
-  $('#page-add-fields').show()
+  $('.page-delete').on('click', Page.removeTile)
+  $('#page-add').show()
   $('#page-edit').hide()
+  $("#page-add").on('click', function(ev) {
+    var button = $('<button class="tmp-page page-delete"><img src="/x-button.png" /></button>')
+      .on('click', Page.removeTile)
+    gridster.add_widget($('<li><input type="text" name="title" placeholder="Title or URL">' +
+        '<textarea name="caption" placeholder="Caption"></textarea></li>')
+        .append(button))
+  })
+}
+
+Page.removeTile = function(ev) {
+  var gridster = $('.gridster ul').gridster().data('gridster')
+  gridster.remove_widget(ev.target.parent)
 }
 
 Page.save = function() {

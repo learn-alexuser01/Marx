@@ -23,9 +23,7 @@
           %h2 Welcome.
         .buttons{style:"float: right; margin-top: -80px;"}
           .pure-form
-            %span#page-add-fields{style: 'display:none;'}
-              %input.pure-input-2-3{style:"margin-left: -100px; height: 35px; width: 200px;", :type => "text" }
-              %button.pure-button.pure-button-success#page-add Add
+            %button.pure-button.pure-button-success#page-add{style: 'display:none;'} Add
             %button.pure-button.pure-button-warning#page-edit Edit
           %ul{style:"margin-left: 25px;"}
             = link_to 'Share on Facebook', '#', :class => "fb_share pure-button", :style => "background-color: #4862A3; color: #fff;"
