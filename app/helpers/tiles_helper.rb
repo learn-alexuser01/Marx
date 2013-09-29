@@ -29,8 +29,8 @@ module TilesHelper
   end
 
   def tile_url_render(tile)
-    # do some summarizing
-    render 'tiles/url.html', tile: tile
+    Net::HTTP.get(URI(tile.title)) =~ /<title>(.*?)<\/title>/
+    render 'tiles/url.html', tile: tile, page_title: $1
   end
 
   def tile_plain_render(tile)

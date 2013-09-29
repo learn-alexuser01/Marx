@@ -23,13 +23,12 @@
           %h2 Subtitle where we should probably put author
         .buttons{style:"float: right; margin-top: -80px;"}
           .pure-form
-            %input.pure-input-2-3{style:"margin-left: 0px; height: 35px;", :type => "text" }
+            %input.pure-input-2-3{style:"margin-left: -100px; height: 35px; width: 200px;", :type => "text" }
             %button.pure-button.pure-button-success Add
-            %ul{style:"margin-left: 25px;"}
-              = link_to 'Share on Facebook', '#', :class => "fb_share"
-              = facebook_share_once
-              %button.pure-button.pure-button-warning Edit
-              %button.pure-button.pure-button-error Remove
+            %button.pure-button.pure-button-warning Edit
+          %ul{style:"margin-left: 25px;"}
+            = link_to 'Share on Facebook', '#', :class => "fb_share"
+            = facebook_share_once
 
         %br
       .gridster{:style => "text-align:center;"}

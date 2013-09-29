@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_filter :authenticate_user!
+
   def show
     @page = Page.find(params[:id])
     respond_to do |format|
@@ -21,6 +23,9 @@ class PagesController < ApplicationController
   # make sure MIME type is correct
   def update
     @page = Page.find(params[:id])
+    if current_user.id != @page.owner_id
+      not_found
+    end
     @page.partial_update(params[:updates])
     respond_to do |format|
       format.json {
@@ -31,6 +36,9 @@ class PagesController < ApplicationController
 
   def delete
     @page = Page.find(params[:id])
+    if current_user.id != @page.owner_id
+      not_found
+    end
     @page.destroy!
   end
 end
