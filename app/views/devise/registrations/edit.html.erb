@@ -19,7 +19,7 @@
     <%= f.text_field :current_password, :hint => "", :required => true, placeholder: 'Current password' %>
 
     <%= f.button :submit, "Update", class: 'pure-button pure-button-primary' %>
-    <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class: 'pure-button pure-button-error' %></p>
+    <%= link_to "Delete my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class: 'pure-button pure-button-error' %></p>
   </fieldset>
 <% end %>
 
