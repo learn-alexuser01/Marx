@@ -15,8 +15,8 @@
         %li.menu-item-divided
           %a{href: "#"} Divider Sample
       %br
-      %li.pure-menu-selected{:style => "text-align: center; list-style-type: none; margin-left: -20px;"}
-        = link_to "Log out", destroy_user_session_path, :method => :delete
+      .pure-menu-selected{:style => "text-align: center; list-style-type: none; position: absolute; bottom: 0; width: 100%;"}
+        = link_to "Log out", destroy_user_session_path, :method => :delete, :style => "padding: 12px 0px;"
   #main.pure-u-1
     .header
       %h1 Page Title Goes Here!
