@@ -5,12 +5,11 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.json {
         @page = Page.find(params[:id])
-        @rel_photo = flickr.photos.search(:text => params[:title], :per_page =>'10', :page => 1, :sort => 'relevance', :safe_search => '1')
+        @rel_photo = flickr.photos.search(:text => @page.title, :per_page =>'10', :page => 1, :sort => 'relevance', :safe_search => '1')
         render partial: 'pages/page.json'
 
       }
       format.html {
-        @page = Page.find(params[:id])
         @pages = Page.where({owner: current_user}).all
         @photos = flickr.photos.search(:text => 'landscapes', :per_page => 10, :page => 1 , sort: 'relevance', safe_search: 1)
         render 'home/index'
