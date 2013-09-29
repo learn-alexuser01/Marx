@@ -1,3 +1,10 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.tile-center-cropped {
+    width: 200px;  // change to desired width.
+    height: 200px; // change to desired height.
+    background-position: center center;
+    background-repeat: no-repeat;
+}​{}
