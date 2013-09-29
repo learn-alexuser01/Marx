@@ -1,5 +1,5 @@
 - photo_url_m = flickr.photos.getSizes(photo_id: @photos.to_a.sample.id).to_a.last["source"]
-%body.blur{:style => "background: url(#{photo_url_m}); background-size: cover; height: auto !important; shape : 'square', resolution : 48;"}
+%body.blur{:style => "background: url(#{photo_url_m}); background-size: cover; height: auto !important;"}
   #layout.pure-g-r
     %a#menuLink.pure-menu-link{href: "#menu"}
       %span
