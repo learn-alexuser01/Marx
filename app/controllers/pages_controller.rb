@@ -5,7 +5,7 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.json {
         @page = Page.find(params[:id])
-        @rel_photo = flickr.photos.search(:text => @page.title, :per_page =>'10', :page => 1, :sort => 'relevance', :safe_search => '1')
+#        @rel_photo = flickr.photos.search(:text => @page.title, :per_page =>'10', :page => 1, :sort => 'relevance', :safe_search => '1')
         render partial: 'pages/page.json'
 
       }
@@ -18,7 +18,7 @@ class PagesController < ApplicationController
   end
 
   def create
-    @page = Page.create!({owner: current_user, title: 'Untitled'})
+    @page = Page.create!({owner: current_user, title: params[:title]})
     respond_to do |format|
       format.json {
         render partial: 'pages/page.json'

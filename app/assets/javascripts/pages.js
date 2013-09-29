@@ -9,8 +9,8 @@ Page.show = function(id, callback) {
 }
 
 // callback receives the page content
-Page.create = function(callback) {
-  $.post('/pages.json', null, callback)
+Page.create = function(title, callback) {
+  $.post('/pages.json', {title: title}, callback)
 }
 
 // page is a Page object
@@ -182,8 +182,7 @@ $().ready(function() {
   }
 
   $(".new_page").on('click', function(ev) {
-    Page.create(function(data) {
-      console.log(data.id)
+    Page.create($('#new_title').val(), function(data) {
       var link= $('<a></a>').addClass("page_link").data('id', data.id).attr('href', "#").text(data.title).on('click', function(ev) {
         Page.showAndUpdate(ev.target);
         return false;
