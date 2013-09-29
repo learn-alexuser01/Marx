@@ -8,6 +8,8 @@
         %a.pure-menu-heading{style:"text-align:center; margin-left: -15px;", href: "/"} Marx
         %a.pure-menu-heading{href: "/users/edit"}= current_user.name
         %ul{class: "page_list"}
+          %li{:class => "pure-form pure-form-stacked", :style => "padding: 5px;"}
+            %input{id:"new_title", :style => "display:table-cell; width: 100%;", placeholder: "Page Title"}
           %li
             %a{href:"#",:style => "color:white;",class: "new_page"} New Page
           - @pages.each_with_index do |page, index|
@@ -42,3 +44,5 @@
             .tile-bg-url{:style => "background-color: #555555; color:white; text-align: left; padding: 20px; width: 160px; height: 160px;"} Have
           %li{data:{row:"1",col:"5",sizex:"1",sizey:"1"}}
             .tile-bg-url{:style => "background-color: #666666; color:white; text-align: left; padding: 20px; width: 160px; height: 160px;"} fun.
+          %li{data:{row:"2",col:"1",sizex:"1",sizey:"1"}}
+            .tile-bg-url{:style => "background-color: #777777; color:white; text-align: left; padding: 20px; width: 160px; height: 160px;"} To begin, click on New Page.
