@@ -4,6 +4,7 @@
   #menu.pure-u
     .pure-menu.pure-menu-open
       %a.pure-menu-heading{href: "/"} Marx
+      %a.pure-menu-heading{href: "/users/edit"}= current_user.name
       %ul
         - @pages.each do |page|
           %li
