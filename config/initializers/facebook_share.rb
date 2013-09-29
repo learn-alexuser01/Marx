@@ -2,7 +2,7 @@ FacebookShare.default_facebook_share_options = {
   :framework => :jquery,
   :jquery_function => "$",
 
-  :app_id => "640019116031229",
+  :app_id => "542898845783988",
   :status => "false",
   :cookie => "false",
   :xfbml => "false",
