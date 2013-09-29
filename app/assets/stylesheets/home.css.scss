@@ -13,7 +13,7 @@
   text-align: center;
   border-top: 1px solid #2E2E2F;
   -webkit-border-radius: 0px 0px 5px 5px;
-      -moz-border-radius: 0px 0px 5px 5px;
+-moz-border-radius: 0px 0px 5px 5px;
       border-radius: 0px 0px 5px 5px;
 
   a {
@@ -24,13 +24,19 @@
 
 }
 
+.container-box {
+  width: 100%;
+  text-align: center;
+  margin: 0px auto;
+  padding-top: 30px;
+}
+
 .login-box {
   background-color: #2B2F2D;
   width: 300px;
   height: 240px;
   margin: 0px auto;
   text-align: center;
-  margin-top: 30px;
   border-bottom: 1px solid #141113;
   padding: 20px;
     -webkit-border-radius: 5px 5px 0px 0px;
@@ -115,6 +121,8 @@
 }
 
 body {
+    height: 100%;
+    height: auto !important;
     color: #777;
 }
 
