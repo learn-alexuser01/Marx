@@ -2,6 +2,8 @@
 
 Don't forget to do:
 
-* Yahoo auth
+* URL for each page (Shrav)
 
-* URL for each page
+* Add edit mode (Douglas)
+
+* Add second edit field and share button (Shrav)
