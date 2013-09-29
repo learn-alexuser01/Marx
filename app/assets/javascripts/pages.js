@@ -155,15 +155,16 @@ Page.save = function() {
   Page.update(Page.current.id, function(){}, p, newTiles, updatedTiles, Page.removedTileIds);
 }
 
-Page.showAndUpdate = function() {
-  Page.show(ev.target.dataset.id, function(data) {
-    Page.updateCurrent(ev.target);
+Page.showAndUpdate = function(target) {
+  Page.show(target.dataset.id, function(data) {
+    Page.updateCurrent(target);
     Page.render(data)
   })
 }
 
 $().ready(function() {
   $(".page_link").on('click', function(ev) {
+    Page.showAndUpdate(ev.target);
     return false;
   });
 
@@ -184,11 +185,10 @@ $().ready(function() {
     Page.create(function(data) {
       console.log("HERE")
       console.log(data)
+      var link= $('<a></a>').addClass("page_link").data("id", data.id).attr('href', "#").text(data.title)
       $('.page_list').append(
-        $('<li></li>').append(
-          $('<a></a>').addClass("page_link").data("id", data.id).attr('href', "#").text(data.title)
-        ))
-      Page.showAndUpdate();
+        $('<li></li>').append( link))
+      Page.showAndUpdate(link);
     });
     return false;
   })

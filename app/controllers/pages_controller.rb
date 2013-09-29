@@ -10,8 +10,9 @@ class PagesController < ApplicationController
 
       }
       format.html {
-        @photos = flickr.interestingness.getList( :per_page => 10, :page => 1 )
+        @page = Page.find(params[:id])
         @pages = Page.where({owner: current_user}).all
+        @photos = flickr.photos.search(:text => 'landscapes', :per_page => 10, :page => 1 , sort: 'relevance', safe_search: 1)
         render 'home/index'
       }
     end
