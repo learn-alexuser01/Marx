@@ -22,6 +22,8 @@ gem "omniauth-yahoo", "~> 0.0.4"
 
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'thin'
+gem 'jquery-turbolinks'
+
 
 #yahoo apis
 gem "pure-css-rails"
