@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def interesting_photo
-    return flickr.interestingness.getList( :per_page => 1, :page => 1 )
+    return flickr.interestingness.getList( :per_page => 1, :page => 10 )
   end
 
   def not_found
