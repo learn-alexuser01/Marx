@@ -69,4 +69,8 @@ $().ready(function() {
     })
     return false;
   });
+
+  $(".new_page").on('click', function(ev) {
+    $(".page_list").append("<li><a>Untitled</a></li>")
+  });
 })
