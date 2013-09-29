@@ -18,7 +18,7 @@ class PagesController < ApplicationController
   end
 
   def create
-    @page = Page.create!({owner: current_user, title: 'Untitled'})
+    @page = Page.create!({owner: current_user, title: params[:title]})
     respond_to do |format|
       format.json {
         render partial: 'pages/page.json'
