@@ -3,7 +3,7 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     respond_to do |format|
       format.json {
-        render json: @page, include: :tiles
+        render partial: 'pages/page.json'
       }
     end
   end
@@ -12,7 +12,7 @@ class PagesController < ApplicationController
     Page.new({owner: current_user})
     respond_to do |format|
       format.json {
-        render json: @page, include: :tiles
+        render partial: 'pages/page.json'
       }
     end
   end
@@ -24,7 +24,7 @@ class PagesController < ApplicationController
     @page.partial_update(params[:updates])
     respond_to do |format|
       format.json {
-        render json: @page, include: :tiles
+        render partial: 'pages/page.json'
       }
     end
   end

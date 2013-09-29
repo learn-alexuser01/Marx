@@ -1,0 +1,12 @@
+<%
+  tmp = @page.attributes
+  tmp[:tiles] = @page.tiles.each.map do |tile|
+    tmp2 = tile.attributes
+    # tile_render is in app/helpers/tile_helper.rb
+    tmp2[:rendered_content] = tile_render(tile)
+    tmp2
+  end
+  tmp[:owner_name] = @page.owner.name
+%>
+
+<%= tmp.to_json.html_safe %>
