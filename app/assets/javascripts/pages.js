@@ -59,7 +59,17 @@ Page.delete = function(id, callback) {
 Page.render = function(data) {
   $('.header h1').html(data.title)
   $('.header h2').html(data.owner_name)
-  $('.gridster ul').empty()
+  var gridster = $('.gridster ul').gridster().data('gridster')
+  var existing = $('.gridster li')
+  for(i = 0; i < existing.length; i++) {
+    gridster.remove_widget(existing[i]);
+  }
+  var tiles = data.tiles
+  for(i = 0; i < tiles.length; i++) {
+    var tile = tiles[i];
+    gridster.add_widget('<li class="gs_w">' + tile.rendered_content +
+        '</li>', tile.sizex, tile.sizey, tile.col, tile.row)
+  }
 }
 
 Page.currentEntry = null

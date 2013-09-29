@@ -20,43 +20,39 @@ if Rails.env.development?
     owner: user1
   })
   tile1 = Tile.create!({
-    contenttype: "image",
     title: "http://www.flickr.com/photos/66294045@N05/9969686144/",
     caption: "Ducks!",
-    col: 0,
-    row: 0,
-    size_x: 2,
-    size_y: 1,
+    col: 1,
+    row: 1,
+    sizex: 2,
+    sizey: 1,
     page: page1
   })
   tile2 = Tile.create!({
-    contenttype: "video",
     title: "http://www.youtube.com/watch?v=Z9uUzryUWnA",
     caption: "OPRAHMONEY",
-    col: 2,
-    row: 0,
-    size_x: 2,
-    size_y: 2,
+    col: 3,
+    row: 1,
+    sizex: 2,
+    sizey: 2,
     page: page1
   })
   tile3 = Tile.create!({
-    contenttype: "text",
     title: "CoolBeans",
     caption: "JellyBeans",
-    col: 4,
-    row: 0,
-    size_x: 1,
-    size_y: 2,
+    col: 5,
+    row: 1,
+    sizex: 1,
+    sizey: 2,
     page: page1
   })
   tile4 = Tile.create!({
-    contenttype: "page",
     title: "http://internetolympiad.org",
     caption: "NIMO",
-    col: 0,
-    row: 1,
-    size_x: 1,
-    size_y: 1,
+    col: 1,
+    row: 2,
+    sizex: 1,
+    sizey: 1,
     page: page1
   })
 end

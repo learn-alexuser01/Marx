@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130929043726) do
+ActiveRecord::Schema.define(version: 20130929063909) do
 
   create_table "pages", force: true do |t|
     t.string   "title"
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20130929043726) do
     t.text     "caption"
     t.integer  "col"
     t.integer  "row"
-    t.integer  "size_x"
-    t.integer  "size_y"
+    t.integer  "sizex"
+    t.integer  "sizey"
     t.integer  "page_id"
     t.datetime "created_at"
     t.datetime "updated_at"
