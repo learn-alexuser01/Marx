@@ -3,10 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  require 'flickraw'
-    FlickRaw.api_key="18ec419d7ff691b6b202b8012b63ed41"
-    FlickRaw.shared_secret="5f06991ff3d25cd2"
-    @interesting_photos = flickr.interestingness.getList( :per_page => 1, :page => 1 )
+  def interesting_photo
+    return flickr.interestingness.getList( :per_page => 1, :page => 1 )
+  end
 
   def not_found
       raise ActionController::RoutingError.new('Not Found')
