@@ -1,5 +1,5 @@
 - @photos.each do |pic|
-  - photo_url_m = FlickRaw.url_m(flickr.photos.getInfo(:photo_id => pic.id))
+  - photo_url_m = flickr.photos.getSizes(photo_id: pic.id).to_a.last["source"]
   %body{:style => "background: url(#{photo_url_m}); background-size: cover; height: auto !important;"}
     .container-box{style:""}
       .login-box  
