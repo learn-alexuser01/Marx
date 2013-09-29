@@ -26,6 +26,8 @@
             %input.pure-input-2-3{style:"margin-left: 0px; height: 35px;", :type => "text" }
             %button.pure-button.pure-button-success Add
             %ul{style:"margin-left: 25px;"}
+              = link_to 'Share on Facebook', '#', :class => "fb_share"
+              = facebook_share_once
               %button.pure-button.pure-button-warning Edit
               %button.pure-button.pure-button-error Remove
 

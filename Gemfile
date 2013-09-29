@@ -16,6 +16,7 @@ gem 'haml-rails'
 gem 'devise'
 gem "omniauth", "~> 1.1.4"
 gem "omniauth-facebook", "~> 1.4.1"
+gem "facebook_share"
 
 #yahoo
 gem "omniauth-yahoo", "~> 0.0.4"
