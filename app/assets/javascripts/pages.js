@@ -56,6 +56,8 @@ Page.delete = function(id, callback) {
   }, callback)
 }
 
+Page.currentTiles = null;
+
 Page.render = function(data) {
   $('.header h1').html(data.title)
   $('.header h2').html(data.owner_name)
@@ -65,11 +67,13 @@ Page.render = function(data) {
     gridster.remove_widget(existing[i]);
   }
   var tiles = data.tiles
+  Page.currentTiles = tiles
   for(i = 0; i < tiles.length; i++) {
     var tile = tiles[i];
     gridster.add_widget('<li class="gs_w">' + tile.rendered_content +
         '</li>', tile.sizex, tile.sizey, tile.col, tile.row)
   }
+  gridster.disable()
   window.history.pushState("page", data.title + " - Marx", "/pages/" + data.id);
 }
 
@@ -80,6 +84,23 @@ Page.updateCurrent = function(target) {
     Page.highlightedMenuEntry.removeClass("pure-menu-selected");
   $(target).parent().addClass("pure-menu-selected");
   Page.highlightedMenuEntry = $(target).parent();
+}
+
+Page.edit = function() {
+  var gridster = $('.gridster ul').gridster().data('gridster')
+  gridster.enable();
+  $('.gridster li').each(function(index, tile) {
+    tile.innerHTML = '<input type="text" name="title" value="'+
+      Page.currentTiles[index].title+'"></input>' +
+      '<textarea>'+Page.currentTiles[index].caption+'</textarea>' +
+      '<button class="page-delete"><img src="/x-button.png" /></button>'
+  })
+  $('#page-add-fields').show()
+  $('#page-edit').hide()
+}
+
+Page.save = function() {
+
 }
 
 $().ready(function() {
@@ -101,6 +122,10 @@ $().ready(function() {
     })
     return false;
   });
+
+  $("#page-edit").on('click', function(ev) {
+    Page.edit()
+  })
 
   if(window.location.pathname.indexOf("/pages/") >= 0) {
     var id = window.location.pathname.replace("/pages/","")
