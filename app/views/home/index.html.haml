@@ -5,18 +5,12 @@
     .pure-menu.pure-menu-open
       %a.pure-menu-heading{href: "/"} Marx
       %a.pure-menu-heading{href: "/users/edit"}= current_user.name
-      %ul
+      %ul{class: "page_list"}
         %li
           %a{href:"#",:style => "color:white;",class: "new_page"} New Page
         - @pages.each_with_index do |page, index|
           %li{:class => ("menu-item-divided" if index==0)}
             %a{href:"#", class: "page_link", data:{id:page.id}}= page.title
-        %li
-          %a{href:"#",class: "page_link", data:{id:"5"}} Sample
-        %li
-          %a{href:"#"} Sample2
-        %li.menu-item-divided
-          %a{href: "#"} Divider Sample
       %br
       .pure-menu-selected{:style => "text-align: center; list-style-type: none; position: absolute; bottom: 0; width: 100%;"}
         = link_to "Log out", destroy_user_session_path, :method => :delete, :style => "padding: 12px 0px;"
