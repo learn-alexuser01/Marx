@@ -85,11 +85,12 @@ Page.edit = function() {
   var gridster = $('.gridster ul').gridster().data('gridster')
   gridster.enable();
   $('.gridster li').each(function(index, tile) {
+    console.log(Page.current.tiles[index].sizex)
     tile.innerHTML = '<div class="tile-bg-url" style="; width: '+
       (200 * Page.current.tiles[index].sizex - 10)+
-      ' px; height: '+
+      'px; height: '+
       (200 * Page.current.tiles[index].sizey - 10)+
-      ' px;" ><input type="text" name="title" value="'+
+      'px;" ><input type="text" name="title" value="'+
       Page.current.tiles[index].title+'"></input>' +
       '<textarea name="caption">'+Page.current.tiles[index].caption+'</textarea>' +
       '<button class="page-delete" style="background: none; border:none !important;"><img src="/x-button.png" /></button></div>'
