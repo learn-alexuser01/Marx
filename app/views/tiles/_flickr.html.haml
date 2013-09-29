@@ -1,3 +1,2 @@
-.tile-bg-flickr
-  %p= tile.caption
-  %img.tile-image{:src => imgurl}/
+.tile-bg-flickr{:style => "background-image: url(#{imgurl});"}
+    %aside.photo-box= tile.caption
