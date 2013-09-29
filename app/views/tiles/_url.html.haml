@@ -1,3 +1,3 @@
 .tile-bg-url{:style => "width: #{200*tile.sizex-10}px;height: #{200*tile.sizey-10}px;"}
-  %h3= tile.caption
-  %p URL placeholder
+  = link_to page_title, tile.title
+  %p=tile.caption
