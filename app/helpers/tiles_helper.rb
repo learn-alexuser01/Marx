@@ -15,8 +15,12 @@ module TilesHelper
   end
 
   def tile_flickr_render(tile, id)
-    # do some api stuff
-    url = "asdf"
+    begin
+      sizes = flickr.photos.getSizes(photo_id: id)
+      url = sizes.to_a.last["source"]
+    rescue
+      url = nil
+    end
     render 'tiles/flickr.html', tile: tile, imgurl: url
   end
 
