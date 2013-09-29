@@ -7,9 +7,9 @@
       %ul
         - @pages.each do |page|
           %li
-            %a{href:"#"}= page.title
+            %a{href:"#", class: "page_link", data:{id:page.id}}= page.title
         %li
-          %a{href:"#"} Sample
+          %a{href:"#",class: "page_link", data:{id:"5"}} Sample
         %li
           %a{href:"#"} Sample2
         %li.menu-item-divided
