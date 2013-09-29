@@ -5,7 +5,7 @@ class Page < ActiveRecord::Base
   def partial_update(update)
     page_update = update[:page]
     page_update.delete(:id)
-    self.update(page_update)
+    self.update!(page_update)
 
     tile_update = update[:tiles]
 
