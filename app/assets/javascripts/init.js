@@ -1,4 +1,4 @@
-$(function(){ //DOM Ready
+$().ready(function(){ //DOM Ready
  
     $(".gridster ul").gridster({
         widget_margins: [10, 10],
