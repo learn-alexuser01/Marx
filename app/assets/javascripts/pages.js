@@ -70,22 +70,22 @@ Page.render = function(data) {
     gridster.add_widget('<li class="gs_w">' + tile.rendered_content +
         '</li>', tile.sizex, tile.sizey, tile.col, tile.row)
   }
+  window.history.pushState("page", data.title + " - Marx", "/pages/" + data.id);
 }
 
 Page.currentEntry = null
 
-Page.updateCurrent = function(ev) {
+Page.updateCurrent = function(target) {
   if(Page.highlightedMenuEntry != null)
     Page.highlightedMenuEntry.removeClass("pure-menu-selected");
-  $(ev.target).parent().addClass("pure-menu-selected");
-  Page.highlightedMenuEntry = $(ev.target).parent();
-
+  $(target).parent().addClass("pure-menu-selected");
+  Page.highlightedMenuEntry = $(target).parent();
 }
 
 $().ready(function() {
   $(".page_link").on('click', function(ev) {
     Page.show(ev.target.dataset.id, function(data) {
-      Page.updateCurrent(ev);
+      Page.updateCurrent(ev.target);
       Page.render(data)
     })
     return false;
@@ -99,6 +99,14 @@ $().ready(function() {
       $('.page_list').last().first().get().click()
       console.log(data['id'])
     })
+    return false;
   });
+
+  if(window.location.pathname.indexOf("/pages/") >= 0) {
+    var id = window.location.pathname.replace("/pages/","")
+    var li = $('.page_list li').find("[data-id='" + id + "']")
+    Page.updateCurrent(li)
+    Page.show(id, Page.render)
+  }
 })
 
