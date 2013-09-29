@@ -154,6 +154,8 @@ GEM
       json (>= 1.1.3)
       rdoc (~> 3.10)
     sexp_processor (4.3.0)
+    share (1.0.1)
+      rails
     simple_form (3.0.0)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
@@ -213,6 +215,7 @@ DEPENDENCIES
   rails_12factor
   sass-rails (~> 4.0.0)
   sdoc
+  share
   simple_form (>= 3.0.0.rc)
   sqlite3
   thin
